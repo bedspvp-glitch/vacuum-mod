@@ -15,12 +15,12 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
       - name: Make gradlew executable
         run: chmod +x ./gradlew
+      - name: Delete all Loom lock files
+        run: find ~/.gradle -name "*.lock" -delete || true
       - name: Build mod
-        run: ./gradlew build
+        run: ./gradlew build --no-daemon --no-parallel
       - name: Upload JAR artifact
         uses: actions/upload-artifact@v4
         with:
