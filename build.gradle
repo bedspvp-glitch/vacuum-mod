@@ -13,8 +13,6 @@ base {
 repositories {
     maven { url = "https://maven.fabricmc.net/" }
     maven { url = "https://maven.terraformersmc.com/releases/" }
-    maven { url = "https://maven.cafeteria.dev" }
-    maven { url = "https://api.modrinth.com/maven" }
     mavenCentral()
 }
 
@@ -29,26 +27,15 @@ loom {
     }
 }
 
-fabricApi {
-    configureDataGeneration()
-}
-
-configurations {
-    compileOnly
-}
-
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    // Mod Menu — optional integration
+    // Mod Menu — optional, for settings screen
     modCompileOnly "com.terraformersmc:modmenu:${project.modmenu_version}"
     modLocalRuntime "com.terraformersmc:modmenu:${project.modmenu_version}"
-
-    // Sodium — optional compile-only for API access
-    modCompileOnly "maven.modrinth:sodium:${project.sodium_version}"
 }
 
 processResources {
