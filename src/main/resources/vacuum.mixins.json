@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "package": "dev.vacuum.mixin.common",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ChunkHolderManagerMixin",
+    "ChunkTaskPrioritySystemMixin",
+    "ServerChunkManagerMixin",
+    "ThreadedAnvilChunkStorageMixin",
+    "ServerWorldMixin",
+    "EntityTrackerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
