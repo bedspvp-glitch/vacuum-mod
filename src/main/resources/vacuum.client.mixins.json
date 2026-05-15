@@ -1,0 +1,23 @@
+{
+  "required": true,
+  "package": "dev.vacuum.mixin.client",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "ClientInteractionManagerMixin",
+    "ClientPlayerEntityMixin",
+    "ClientPlayerInteractionManagerMixin",
+    "EntityRenderDispatcherMixin",
+    "WorldRendererMixin",
+    "GameRendererMixin",
+    "InGameHudMixin",
+    "BackgroundRendererMixin",
+    "ChunkBuilderMixin",
+    "ClientChunkManagerMixin",
+    "ParticleManagerMixin",
+    "SoundSystemMixin",
+    "MinecraftClientMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
