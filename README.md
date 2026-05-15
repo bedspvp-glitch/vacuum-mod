@@ -5,7 +5,7 @@
 ![Minecraft](https://img.shields.io/badge/Minecraft-1.21.4-green)
 ![Fabric](https://img.shields.io/badge/Loader-Fabric-orange)
 
-Vacuum is a Fabric performance optimization mod for Minecraft 1.21.10 that reduces FPS drops, caps chunk loading, and cuts client-side action latency from ~2ms to ~0.01ms.
+Vacuum is a Fabric performance optimization mod for Minecraft 1.21.4 that reduces FPS drops, caps chunk loading, and cuts client-side action latency from ~2ms to ~0.01ms.
 
 **→ [Download on Modrinth](https://modrinth.com/project/vacuummod)**
 
@@ -57,11 +57,11 @@ Config is saved to `.minecraft/config/vacuum.json` and hot-reloads on screen clo
 
 | Dependency | Version | Required? |
 |---|---|---|
-| Minecraft (Java Edition) | 1.21.10 | ✅ |
+| Minecraft (Java Edition) | 1.21.4 | ✅ |
 | Fabric Loader | ≥ 0.16.0 | ✅ |
-| Fabric API | 0.115.0+1.21.10 | ✅ |
+| Fabric API | 0.119.2+1.21.4 | ✅ |
 | Mod Menu | 13.0.0 | Optional (for settings screen) |
-| Sodium | mc1.21.10-0.6.9 | Optional (API compat) |
+| Sodium | mc1.21.4-0.6.9 | Optional (API compat) |
 
 ---
 
@@ -93,14 +93,14 @@ Drop it into your `.minecraft/mods/` folder alongside Fabric API (and optionally
 
 ### Updating dependency versions
 
-If Fabric has released newer versions for 1.21.10, update these lines in `gradle.properties`:
+If Fabric has released newer versions for 1.21.4, update these lines in `gradle.properties`:
 
 ```properties
-yarn_mappings=1.21.10+build.X   # check https://fabricmc.net/develop
+yarn_mappings=1.21.4+build.X   # check https://fabricmc.net/develop
 loader_version=0.16.X
-fabric_version=0.XXX.0+1.21.10
+fabric_version=0.XXX.0+1.21.4
 modmenu_version=XX.0.0
-sodium_version=mc1.21.10-X.X.X
+sodium_version=mc1.21.4-X.X.X
 ```
 
 ---
