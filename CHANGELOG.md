@@ -2,7 +2,7 @@
 
 ## [1.0.0] — Initial Release
 
-First public release of Vacuum for Minecraft 1.21.10 (Fabric).
+First public release of Vacuum for Minecraft 1.21.4 (Fabric).
 
 ### ✨ Added
 
