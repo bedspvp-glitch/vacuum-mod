@@ -1,6 +1,13 @@
 # Vacuum — Minecraft 1.21.10 Performance Mod
 
+[![Modrinth](https://img.shields.io/badge/Modrinth-Download-brightgreen?logo=modrinth)](https://modrinth.com/project/vacuummod)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+![Minecraft](https://img.shields.io/badge/Minecraft-1.21.10-green)
+![Fabric](https://img.shields.io/badge/Loader-Fabric-orange)
+
 Vacuum is a Fabric performance optimization mod for Minecraft 1.21.10 that reduces FPS drops, caps chunk loading, and cuts client-side action latency from ~2ms to ~0.01ms.
+
+**→ [Download on Modrinth](https://modrinth.com/project/vacuummod)**
 
 ---
 
