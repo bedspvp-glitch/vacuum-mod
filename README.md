@@ -1,4 +1,4 @@
-# Vacuum — Minecraft 1.21.10 Performance Mod
+# Vacuum — Minecraft 1.21.4 Performance Mod
 
 [![Modrinth](https://img.shields.io/badge/Modrinth-Download-brightgreen?logo=modrinth)](https://modrinth.com/project/vacuummod)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
