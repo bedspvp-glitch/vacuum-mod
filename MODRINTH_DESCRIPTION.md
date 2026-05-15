@@ -3,7 +3,7 @@
 
 Most performance mods are a black box — you install them and hope for the best. Vacuum is different. Every single feature is documented, configurable, and designed to be compatible with everything else in your modpack.
 
-**Vacuum targets the three biggest sources of lag in Minecraft 1.21.10:**
+**Vacuum targets the three biggest sources of lag in Minecraft 1.21.4:**
 1. Chunk loading overwhelming the CPU
 2. Rendering entities you can't even see
 3. The tiny but noticeable delay between clicking and feeling something happen
@@ -130,7 +130,7 @@ Vacuum is designed from the ground up to coexist with other mods.
 
 ## 📦 Installation
 
-1. Install [Fabric Loader](https://fabricmc.net/use/installer/) for Minecraft 1.21.10
+1. Install [Fabric Loader](https://fabricmc.net/use/installer/) for Minecraft 1.21.4
 2. Download [Fabric API](https://modrinth.com/mod/fabric-api)
 3. Download Vacuum (this mod)
 4. Optionally download [Mod Menu](https://modrinth.com/mod/modmenu) for the in-game settings screen
