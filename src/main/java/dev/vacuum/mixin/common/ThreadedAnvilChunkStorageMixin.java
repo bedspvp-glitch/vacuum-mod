@@ -2,7 +2,7 @@ package dev.vacuum.mixin.common;
 
 import dev.vacuum.VacuumMod;
 import dev.vacuum.config.VacuumConfig;
-import net.minecraft.server.world.ThreadedAnvilChunkStorage;
+import net.minecraft.server.world.ServerChunkLoadingManager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -10,15 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.concurrent.Semaphore;
 
-/**
- * ThreadedAnvilChunkStorageMixin — limits simultaneous chunk generation tasks
- * so that world gen doesn't starve the main server thread of CPU time.
- *
- * This is the primary cause of server-side lag spikes when players explore fast
- * (e.g. on elytra). Capping generation threads to cfg.maxSimultaneousChunkGenerations
- * keeps TPS stable at the cost of slightly slower new-chunk reveal.
- */
-@Mixin(ThreadedAnvilChunkStorage.class)
+@Mixin(ServerChunkLoadingManager.class)
 public class ThreadedAnvilChunkStorageMixin {
 
     private static Semaphore vacuum$genSemaphore = null;
