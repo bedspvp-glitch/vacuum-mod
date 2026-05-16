@@ -15,10 +15,11 @@ public class EntityCullingSystem {
 
     private final AtomicInteger culledThisFrame = new AtomicInteger(0);
     private final AtomicInteger renderedThisFrame = new AtomicInteger(0);
-    private VacuumFrustum currentFrustum;
+    private volatile VacuumFrustum currentFrustum;
     private volatile int entityCount = 0;
 
-    public void setFrustum(VacuumFrustum frustum) {
+    /** Called by WorldRendererMixin each frame with the updated frustum. */
+    public void updateFrustum(VacuumFrustum frustum) {
         this.currentFrustum = frustum;
     }
 
@@ -27,12 +28,10 @@ public class EntityCullingSystem {
         renderedThisFrame.set(0);
     }
 
-    /**
-     * Returns true if the entity should be rendered this frame.
-     */
-    public boolean shouldRender(Entity entity) {
+    /** Called by EntityRenderDispatcherMixin -- returns true if the entity should be rendered. */
+    public boolean shouldRenderEntity(Entity entity) {
         VacuumConfig config = VacuumMod.getConfig();
-        if (!config.enableEntityCulling) {
+        if (!config.entityCulling && !config.frustumCulling) {
             return true;
         }
 
@@ -46,17 +45,19 @@ public class EntityCullingSystem {
             return true;
         }
 
-        // Distance culling
-        Vec3d cameraPos = client.gameRenderer.getCamera().getPos();
-        double distSq = entity.squaredDistanceTo(cameraPos.x, cameraPos.y, cameraPos.z);
-        double maxDist = config.entityRenderDistanceMultiplier * 64.0;
-        if (distSq > maxDist * maxDist) {
-            culledThisFrame.incrementAndGet();
-            return false;
+        // Distance culling (only when entityCulling enabled)
+        if (config.entityCulling) {
+            Vec3d cameraPos = client.gameRenderer.getCamera().getPos();
+            double distSq = entity.squaredDistanceTo(cameraPos.x, cameraPos.y, cameraPos.z);
+            double maxDist = 512.0; // hard cap
+            if (distSq > maxDist * maxDist) {
+                culledThisFrame.incrementAndGet();
+                return false;
+            }
         }
 
-        // Frustum culling
-        if (currentFrustum != null) {
+        // Frustum culling (only when frustumCulling enabled)
+        if (config.frustumCulling && currentFrustum != null) {
             Box box = entity.getBoundingBox().expand(0.5);
             if (!currentFrustum.isVisible(box)) {
                 culledThisFrame.incrementAndGet();
@@ -72,15 +73,7 @@ public class EntityCullingSystem {
         entityCount = renderedThisFrame.get() + culledThisFrame.get();
     }
 
-    public int getCulledCount() {
-        return culledThisFrame.get();
-    }
-
-    public int getRenderedCount() {
-        return renderedThisFrame.get();
-    }
-
-    public int getTotalEntityCount() {
-        return entityCount;
-    }
+    public int getCulledThisFrame()   { return culledThisFrame.get(); }
+    public int getRenderedThisFrame() { return renderedThisFrame.get(); }
+    public int getEntityCount()       { return entityCount; }
 }
