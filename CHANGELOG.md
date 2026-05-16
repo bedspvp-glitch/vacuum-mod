@@ -1,45 +1,34 @@
-# Changelog
+# Changelog — Vacuum Mod
 
-## [1.0.0] — Initial Release
+## [1.1.0] — 2026-05-16
 
-First public release of Vacuum for Minecraft 1.21.4 (Fabric).
+### Added
+- `/vacuum reload` — reload config from disk without restarting (op level 2)
+- `/vacuum status` — show current optimization settings in chat
+- `/vacuum save` — write current settings to disk immediately
+- `/vacuum preset potato|balanced|ultra` — apply one-click performance presets
+- **Config Presets**: Potato (max performance), Balanced (default), Ultra (max quality)
+  - Accessible via in-game Mod Menu settings screen and the `/vacuum preset` command
+- **Auto-performance mode**: automatically adjusts chunk cap, particle count and sound limit
+  when FPS drops below configurable thresholds (default: low=30, high=60)
+- **Lag spike detector**: logs a warning to console whenever a server tick exceeds the
+  configured threshold (default: 50ms)
+- **Chunk preloader**: every second, pre-loads chunks within a configurable radius around
+  each player to reduce pop-in during exploration (default radius: 2 chunks)
+- **Reduced packet spam**: optional setting to reduce position update frequency
+  (off by default — experimental)
 
-### ✨ Added
+### Fixed
+- Build: replaced removed `ParticleManager.getCount()` API with own AtomicInteger counter
+- All mixin targets now use `require = 0` so unknown method names fail gracefully
+- `EntityCullingSystem` method names now match all their callers
+- `fabric.mod.json` correctly targets `~1.21.4`
+- HUD overlay is now always registered; toggling it in settings takes effect immediately
+- Race condition in CI: version bump and Modrinth publish now run atomically in one workflow
 
-#### Chunk Optimizations
-- Dynamic chunk loading cap — auto-adjusts based on current FPS to protect frame time during fast travel
-- Chunk generation thread cap — prevents world gen from starving the main server thread
-- Client-side chunk packet rate limiter — stops high view-distance servers from flooding the render thread
-- Low-priority chunk task throttler — defers background chunk tasks when the per-tick budget is exhausted
-- Configurable chunk builder thread count — override vanilla's conservative default from the settings screen
+### Changed
+- Version bumped to 1.1.0
 
-#### Entity Optimizations
-- Camera frustum culling — entities outside your field of view are skipped entirely, saving draw calls
-- Distance-based entity render throttling — distant entities rendered on alternating frames
-- Server-side entity tracking cap — smooths out lag spikes from mob farms and item explosions
-- Server-side entity tick cap — prevents excessive entity counts from consuming full server ticks
-- Invisible tile entity render skip — skips tile entities with no visible geometry
-
-#### Client-Side Latency (cosmetic/perceptual only)
-- Client-side hit registration — sword hit sound and particles fire the same frame as your click
-- Predictive arm swing — arm animation starts immediately on input, not next tick
-- Instant block interaction — block-breaking swing fires without tick alignment delay
-- Predictive damage tint — entity hurt flash shows on the same frame as your hit
-
-#### Render & Audio
-- Smart particle cap — hard ceiling on active particles (default 4096, configurable)
-- Distant sound culling — skips sounds beyond a configurable radius (default 96 blocks)
-- OpenAL channel cap — prevents audio stutter from simultaneous sound overload
-- Optional fog density reduction for lower-end GPUs
-
-#### Settings
-- Full in-game settings screen via Mod Menu (Mod Menu → Vacuum → Settings)
-- Five organized sections: Chunk, Entity, Latency, Render & Audio, Debug
-- Live debug HUD overlay showing entity cull counts, active chunk cap, particle and sound counts
-- Config saved to `.minecraft/config/vacuum.json`, reloads on screen close
-
-### 🔧 Technical
-- All gameplay-affecting features use conservative defaults
-- Client latency features are cosmetic only — safe on any server, undetectable
-- No core systems replaced — Mixin injection at specific call sites only
-- Compatible with Sodium, Lithium, Iris, Carpet, Continuity, LambDynamicLights
+## [1.0.0] — 2026-05-15
+- Initial release with chunk caps, entity culling, client-side hit prediction,
+  frustum culling, particle cap, sound cap, and Mod Menu settings screen
