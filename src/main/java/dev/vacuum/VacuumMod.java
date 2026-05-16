@@ -28,7 +28,7 @@ public class VacuumMod implements ModInitializer {
             LOGGER.info("[Vacuum] Server stopping — config saved.");
         });
 
-        LOGGER.info("[Vacuum] Initialized. Version 1.0.0 for Minecraft 1.21.10");
+        LOGGER.info("[Vacuum] Initialized. Version 1.0.0 for Minecraft 1.21.4");
     }
 
     public static VacuumConfig getConfig() {
