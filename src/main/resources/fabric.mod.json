@@ -4,9 +4,7 @@
   "version": "${version}",
   "name": "Vacuum",
   "description": "Performance optimization mod for Minecraft 1.21.4. Reduces FPS drops, caps chunk loading, and cuts client-side action latency.",
-  "authors": [
-    "VacuumDev"
-  ],
+  "authors": ["VacuumDev"],
   "contact": {
     "sources": "https://github.com/bedspvp-glitch/vacuum-mod"
   },
@@ -14,15 +12,9 @@
   "icon": "assets/vacuum/icon.png",
   "environment": "*",
   "entrypoints": {
-    "main": [
-      "dev.vacuum.VacuumMod"
-    ],
-    "client": [
-      "dev.vacuum.client.VacuumClientMod"
-    ],
-    "modmenu": [
-      "dev.vacuum.client.gui.VacuumModMenuIntegration"
-    ]
+    "main": ["dev.vacuum.VacuumMod"],
+    "client": ["dev.vacuum.client.VacuumClientMod"],
+    "modmenu": ["dev.vacuum.client.gui.VacuumModMenuIntegration"]
   },
   "mixins": [
     "vacuum.mixins.json",
