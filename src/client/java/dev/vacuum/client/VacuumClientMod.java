@@ -22,9 +22,9 @@ public class VacuumClientMod implements ClientModInitializer {
         entityCullingSystem = new EntityCullingSystem();
         hudOverlay = new VacuumHudOverlay();
 
-        if (cfg.showDebugOverlay) {
-            HudRenderCallback.EVENT.register(hudOverlay::render);
-        }
+        // Always register the overlay — it checks cfg.showDebugOverlay internally each frame
+        // so toggling it in the settings screen works without a restart.
+        HudRenderCallback.EVENT.register(hudOverlay::render);
 
         VacuumMod.LOGGER.info("[Vacuum] Client initialized. Entity culling: {}, Client-side hits: {}",
                 cfg.entityCulling, cfg.clientSideHitRegistration);
